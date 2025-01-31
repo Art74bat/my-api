@@ -21,7 +21,7 @@ class DraftProductMiddleware
         if($product->isDraft())
         {
             return response()->json([
-               'message'=>'product not found',
+               'message'=>'product is draft',
             ],404);
         } 
         return $next($request);
