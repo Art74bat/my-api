@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -8,20 +10,17 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
      // Register (POST - name, email, password)
-     public function register(Request $request){
+    public function register(UserRegisterRequest $request){
 
         // Validation
-        $request->validate([
-            "name" => "required|string",
-            "email" => "required|string|email|unique:users",
-            "password" => "required|confirmed" // password_confirmation
-        ]);
-
+        $request->validated();
+        // dd($request);
         // User model to save user in database
         User::create([
             "name" => $request->name,
             "email" => $request->email,
-            "password" => bcrypt($request->password)
+            "password" => Hash::make($request->password),
+            "isAdmin" => $request->has('isAdmin')? 1 : 0
         ]);
         
         // Response
@@ -33,7 +32,7 @@ class UserController extends Controller
 
     // Login (POST - email, password)
     public function login(Request $request){
-
+        // dd($request);
         // Validation
         $request->validate([
             "email" => "required|string|email",
@@ -82,6 +81,47 @@ class UserController extends Controller
         return response()->json([
             "status" => true,
             "message" => "Profile information",
+            "data" => $userData
+        ]);
+    }
+
+    // Profile Update (PUT,PATCH Auth Token)
+    public function update(UserUpdateRequest $request){
+
+        $request->validated();
+        $userData = auth()->user();
+
+        if ($request->method()=="PUT") {
+            // Update user data
+            $userData->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password) // If password is provided, update it. Otherwise, keep it as it is.
+        ]);
+        }else{
+            // Update user data
+            if($request->has('name')){
+                $userData->update([
+                    "name" => $request->name,
+                ]);
+            }
+            if($request->has('email')){
+                $userData->update([
+                    "email" => $request->email,
+                ]);
+            }
+            if($request->has('password')){
+                $userData->update([
+                    "password" => Hash::make($request->password), // If password is provided, update it. Otherwise, keep it as it is.
+                ]);
+            }
+        }
+
+
+        
+        return response()->json([
+            "status" => true,
+            "message" => "Update Profile information",
             "data" => $userData
         ]);
     }

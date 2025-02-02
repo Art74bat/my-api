@@ -15,4 +15,6 @@ Route::group([
     Route::get("profile", [UserController::class, "profile"]);
     Route::get("logout", [UserController::class, "logout"]);
     Route::get("refresh-token", [UserController::class, "refreshToken"]);
+    Route::put("update-profile", [UserController::class, "update"]);
+    Route::patch("update-profile", [UserController::class, "update"]);
 });
