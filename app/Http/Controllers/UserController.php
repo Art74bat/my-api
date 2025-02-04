@@ -1,14 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\UserRegisterRequest;
-use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\User\UserLoginRequest;
+use App\Http\Requests\User\UserRegisterRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function index ()
+    {
+        // Get all users
+        $users = User::all();
+
+        // Response
+        return response()->json([
+            "status" => true,
+            "user" => $users
+        ]);
+    }
      // Register (POST - name, email, password)
     public function register(UserRegisterRequest $request){
 
@@ -31,13 +43,9 @@ class UserController extends Controller
     }
 
     // Login (POST - email, password)
-    public function login(Request $request){
-        // dd($request);
+    public function login(UserLoginRequest $request){
         // Validation
-        $request->validate([
-            "email" => "required|string|email",
-            "password" => "required"
-        ]);
+        $request->validated();
 
         // Check user by email
         $user = User::where("email", $request->email)->first();
@@ -57,14 +65,16 @@ class UserController extends Controller
                     "message" => "Login successful",
                     "token" => $token
                 ]);
-            }else{
+            }
+            else{
 
                 return response()->json([
                     "status" => false,
                     "message" => "Password didn't match."
                 ]);
             }
-        }else{
+        }
+        else{
 
             return response()->json([
                 "status" => false,
@@ -89,6 +99,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request){
 
         $request->validated();
+        
         $userData = auth()->user();
 
         if ($request->method()=="PUT") {
