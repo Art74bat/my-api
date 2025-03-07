@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests;
 
-use App\Http\Requests\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRegisterRequest extends ApiRequest
+class CorporatePriceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +22,9 @@ class UserRegisterRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            "name" => ["required","string","min:3"],
-            "email" => ["required","string","email","unique:users"],
-            "password" => ["required","confirmed","min:8","max:30"] // password_confirmation
+            "title"=>["nullable|string"],
+            "description"=>["nullable|string"],
+            "price"=>["nullable|numeric"],
         ];
     }
 }
