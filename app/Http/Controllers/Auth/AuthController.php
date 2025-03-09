@@ -31,7 +31,6 @@ class AuthController extends Controller
         $user->createToken($request->name);
         return [
             'user'=>$user->id,
-
         ];
     }
     public function login(LoginRequest $request)
@@ -49,7 +48,7 @@ class AuthController extends Controller
 
         $token = $user->createToken($user->name);
         return [
-            'user'=>new UserResource($user),
+            // 'user'=>new UserResource($user),
             'token'=>$token->plainTextToken,
         ];
     }
