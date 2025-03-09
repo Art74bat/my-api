@@ -26,14 +26,15 @@ use App\Http\Controllers\PostController;
 Route::apiResource('posts',PostController::class);
 
 // User
-Route::get('/users',[AuthController::class,'index'])->middleware('auth:sanctum');
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
-Route::get('/user',[AuthController::class,'show'])->middleware('auth:sanctum');
-Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
-Route::put('/update/{user}',[AuthController::class,'update'])->middleware('auth:sanctum');
-Route::delete('/user/{user}',[AuthController::class,'destroy'])->middleware('auth:sanctum');
-
+Route::controller(AuthController::class)->group(function (){
+    Route::get('/users',[AuthController::class,'index'])->middleware('auth:sanctum');
+    Route::post('/register',[AuthController::class,'register']);
+    Route::post('/login',[AuthController::class,'login']);
+    Route::get('/user',[AuthController::class,'show'])->middleware('auth:sanctum');
+    Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
+    Route::put('/update/{user}',[AuthController::class,'update'])->middleware('auth:sanctum');
+    Route::delete('/destroy/{user}',[AuthController::class,'destroy'])->middleware('auth:sanctum');
+});
 // Calls
 Route::controller(CallController::class)->group(function (){
     Route::get('/calls',[CallController::class,'index']);
