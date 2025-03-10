@@ -24,10 +24,8 @@ class ReviewController extends Controller
         // dd($request);
         $fields = $request->validate([
             'name'=>'required|max:225',
-            'second_name'=>'string',
             'email'=>'required|email',
             "review"=>'max:225',
-            'policy'=>'boolean',
         ]);
 
         Review::create($fields);
