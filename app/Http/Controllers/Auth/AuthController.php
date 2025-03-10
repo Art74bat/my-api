@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         $user->createToken($request->name);
         return [
-            'user'=>$user->id,
+            'message'=>"Пользователь добавлен !",
         ];
     }
     public function login(LoginRequest $request)
@@ -41,7 +41,7 @@ class AuthController extends Controller
         {
             return [
                 'errors' => [
-                    'email'=>['You credentials are not valid']
+                    'email'=>['Введены неправильные данные !']
                 ]
             ];
         }
@@ -56,7 +56,7 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return [
-            'message'=>'You are logged out'
+            'message'=>'Вы вышли из панели администратора !'
         ];
     }
     public function show (Request $request)
@@ -72,14 +72,15 @@ class AuthController extends Controller
             'password'=>$request->password,
         ]);
         return response()->json([
-            'message'=>'data was updated',
+            'message'=>'Данные успешно обновлены !',
         ]);
     }
     public function destroy(User $user)
     {
+        $user->tokens()->delete();
         $user->delete();
         return response()->json([
-            'message'=>'user was deleted',
+            'message'=>'Пользователь был удален !',
         ]);
     }
 }

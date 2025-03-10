@@ -37,6 +37,6 @@ class CallController extends Controller
         // dd($call);
         $call->delete();
 
-        return ['message'=>'The call was deleted'];
+        return ['message'=>'Сообщение было удалено !'];
     }
 }

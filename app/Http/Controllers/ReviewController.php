@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Reviews\ReviewseResource;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class ReviewController extends Controller
     public function index ()
     {
         $review = Review::query()->get();
-        return response()->json($review);
+        return ReviewseResource::collection($review);
+
     }
 
     public function show (Review $review)
@@ -28,10 +30,9 @@ class ReviewController extends Controller
             'policy'=>'boolean',
         ]);
 
-        // dd($request);
-        $review = Review::create($fields);
+        Review::create($fields);
         return response()->json([
-            "id"=>$review->id
+            "message"=>"Отзыв успешно создан !"
         ]);
     }
     public function destroy(Review $review)
