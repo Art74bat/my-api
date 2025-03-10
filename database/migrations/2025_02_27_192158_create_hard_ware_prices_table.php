@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('apple')->nullable();
+            $table->string('apple_model')->nullable();
             $table->text('description');
             $table->float('price');
             $table->timestamps();

@@ -22,9 +22,9 @@ class RecoverPriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title"=>["nullable|string"],
-            "description"=>["nullable|string"],
-            "price"=>["nullable|numeric"],
+            "title"=>["nullable","string"],
+            "description"=>["nullable","string"],
+            "price"=>["nullable","numeric"],
         ];
     }
 }

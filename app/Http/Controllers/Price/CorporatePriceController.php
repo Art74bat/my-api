@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CorporatePriceRequest;
+use App\Http\Resources\Price\PriceResource;
 use App\Models\CorporatePrice;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class CorporatePriceController extends Controller
     public function index ()
     {
         $data = CorporatePrice::query()->get();
-        return response()->json($data);
+        return PriceResource::collection($data);
     }
 
     public function store (CorporatePriceRequest $request)
@@ -22,7 +23,7 @@ class CorporatePriceController extends Controller
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data);
+        return new PriceResource($data);
     }
 
     public function update (CorporatePriceRequest $request, CorporatePrice $item)
@@ -49,7 +50,7 @@ class CorporatePriceController extends Controller
             $item->update($data);
         }
 
-        
+
         return response()->json([
             'id'=>$item->id,
         ]);

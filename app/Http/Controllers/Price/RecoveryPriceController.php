@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RecoverPriceRequest;
+use App\Http\Resources\Price\PriceResource;
 use App\Models\RecoveryPrice;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class RecoveryPriceController extends Controller
     public function index ()
     {
         $data = RecoveryPrice::query()->get();
-        return response()->json($data);
+        return PriceResource::collection($data);
     }
 
     public function store (RecoverPriceRequest $request)
@@ -22,7 +23,7 @@ class RecoveryPriceController extends Controller
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data);
+        return new PriceResource($data);
     }
     public function update (RecoverPriceRequest $request, RecoveryPrice $recovery)
     {
@@ -48,7 +49,7 @@ class RecoveryPriceController extends Controller
             $recovery->update($data);
         }
 
-        
+
         return response()->json([
             'id'=>$recovery->id,
         ]);

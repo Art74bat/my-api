@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CorporatePriceRequest;
 use App\Http\Requests\SettingLinePriceRequest;
+use App\Http\Resources\Price\PriceResource;
 use App\Models\SettingLinePrice;
 use Illuminate\Http\Request;
 
@@ -15,28 +17,28 @@ class SettingLinePriceController extends Controller
     public function index()
     {
         $data = SettingLinePrice::query()->get();
-        return response()->json($data);
+        return PriceResource::collection($data);
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SettingLinePriceRequest $request)
+    public function store(CorporatePriceRequest $request)
     {
         $data = SettingLinePrice::create([
             'title'=>$request->str('title'),
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data);
+        return new PriceResource($data);
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(SettingLinePriceRequest $request, SettingLinePrice $line)
+    public function update(CorporatePriceRequest $request, SettingLinePrice $line)
     {
         if ($request->method() === 'PUT') {
             $line -> update([

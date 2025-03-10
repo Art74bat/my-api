@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionPriceRequest;
+use App\Http\Resources\Price\PriceResource;
 use App\Models\SubscriptionPrice;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class SubscriptionPriceController extends Controller
     public function index ()
     {
         $data = SubscriptionPrice::query()->get();
-        return response()->json($data);
+        return PriceResource::collection($data);
     }
 
     public function store (SubscriptionPriceRequest $request)
@@ -23,7 +24,7 @@ class SubscriptionPriceController extends Controller
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data);
+        return new PriceResource($data);
     }
     public function update (SubscriptionPriceRequest $request, SubscriptionPrice $item)
     {
@@ -49,7 +50,7 @@ class SubscriptionPriceController extends Controller
             $item->update($data);
         }
 
-        
+
         return response()->json([
             'id'=>$item->id,
         ]);
