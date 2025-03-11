@@ -14,6 +14,7 @@ class TeamController extends Controller
         $team = Team::query()->get();
         return TeamResource::collection($team);
     }
+
     public function store(Request $request)
     {
         // dd($request);
@@ -21,10 +22,14 @@ class TeamController extends Controller
             'name'=>'required|string|max:225',
             'second_name'=>'required|string|max:225',
             'experience'=>'required|string|max:100',
+            'image'=>'required|image|max:2048',
         ]);
         // только одна картинка для каждой записи....
         $image = $request->file('image');
-        $path = $image->storePublicly('images/team');
+
+
+        // dd($image);
+        $path = $image->storePublicly('public/images/team');
 
         $team = Team::create([
             'name'=>$request->name,
@@ -35,7 +40,7 @@ class TeamController extends Controller
         return response()->json([
             'message'=>'Данные добавлены !',
             "id"=>$team->id
-        ]);;
+        ]);
     }
     public function update(Request $request, Team $team)
     {
