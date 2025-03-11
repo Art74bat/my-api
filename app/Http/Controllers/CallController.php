@@ -22,14 +22,14 @@ class CallController extends Controller
         // dd($request);
         $fields = $request->validate([
             'name'=>'required|max:225',
-            'email'=>'required|email',
+            'email'=>'email',
             "message"=>'max:225',
-            'phone'=>'required',
-            'consult'=>'required'
+            'phone'=>'string',
+            'call'=>'boolean'
         ]);
         $call = Call::create($fields);
         return response()->json([
-            "id"=>$call->id
+            "message"=>"Данные успешно отправлены !"
         ]);
     }
     public function destroy(Call $call)

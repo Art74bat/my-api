@@ -35,16 +35,16 @@ class PostService
                 'path'=>config('app.url'). Storage::url($path)
             ]);
         }
-        
+
         return $post;
     }
 
     public function update (PostUpdateRequest $request)
     {
-        
+
         $this->post->update([
             'title'=>$request->input('title'),
-        ]); 
+        ]);
         $this->post->body()->update([
             "sub_title"=>$request->input('sub_title'),
             "body"=>$request->input('body'),

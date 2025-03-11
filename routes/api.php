@@ -13,6 +13,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Price\SettingLinePriceController;
 use App\Http\Controllers\Price\SoftWarePriceController;
 use App\Http\Controllers\Price\SubscriptionPriceController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -144,3 +145,15 @@ Route::controller(CorporatePriceController::class)->group(function (){
     Route::patch('/corporate/{item}',[CorporatePriceController::class,'update'])->middleware('auth:sanctum');
     Route::delete('/corporate/{item}',[CorporatePriceController::class,'destroy'])->middleware('auth:sanctum');
 });
+
+
+// ------------------our Team -----------------------------------------------
+
+Route::controller(TeamController::class)->group(function (){
+    Route::get('/team',[TeamController::class,'index']);
+    Route::post('/team',[TeamController::class,'store']);
+    Route::put('/team/{team}',[TeamController::class,'update']);
+    Route::delete('/team/{team}',[TeamController::class,'destroy']);
+});
+
+

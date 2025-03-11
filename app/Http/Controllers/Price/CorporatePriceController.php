@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CorporatePriceRequest;
+use App\Http\Requests\PriceRequest;
 use App\Http\Resources\Price\PriceResource;
 use App\Models\CorporatePrice;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class CorporatePriceController extends Controller
         return PriceResource::collection($data);
     }
 
-    public function store (CorporatePriceRequest $request)
+    public function store (PriceRequest $request)
     {
         $data = CorporatePrice::create([
             'title'=>$request->str('title'),
@@ -26,7 +26,7 @@ class CorporatePriceController extends Controller
         return new PriceResource($data);
     }
 
-    public function update (CorporatePriceRequest $request, CorporatePrice $item)
+    public function update (PriceRequest $request, CorporatePrice $item)
     {
 
         if ($request->method() === 'PUT') {

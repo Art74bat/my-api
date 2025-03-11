@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RecoverPriceRequest;
+use App\Http\Requests\PriceRequest;
 use App\Http\Resources\Price\PriceResource;
 use App\Models\RecoveryPrice;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class RecoveryPriceController extends Controller
         return PriceResource::collection($data);
     }
 
-    public function store (RecoverPriceRequest $request)
+    public function store (PriceRequest $request)
     {
         $data = RecoveryPrice::create([
             'title'=>$request->str('title'),
@@ -25,7 +25,7 @@ class RecoveryPriceController extends Controller
         ]);
         return new PriceResource($data);
     }
-    public function update (RecoverPriceRequest $request, RecoveryPrice $recovery)
+    public function update (PriceRequest $request, RecoveryPrice $recovery)
     {
 
         if ($request->method() === 'PUT') {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SubscriptionPriceRequest;
+use App\Http\Requests\PriceRequest;
 use App\Http\Resources\Price\PriceResource;
 use App\Models\SubscriptionPrice;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class SubscriptionPriceController extends Controller
         return PriceResource::collection($data);
     }
 
-    public function store (SubscriptionPriceRequest $request)
+    public function store (PriceRequest $request)
     {
 
         $data = SubscriptionPrice::create([
@@ -26,7 +26,7 @@ class SubscriptionPriceController extends Controller
         ]);
         return new PriceResource($data);
     }
-    public function update (SubscriptionPriceRequest $request, SubscriptionPrice $item)
+    public function update (PriceRequest $request, SubscriptionPrice $item)
     {
 
         if ($request->method() === 'PUT') {

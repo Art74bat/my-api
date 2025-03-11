@@ -57,7 +57,7 @@ class PostController extends Controller implements HasMiddleware
     public function update(PostUpdateRequest $request, Post $post, PostService $service)
     {
         $service->setPost($post)->update($request);
-        
+
         return response()->json([
             ['id'=>$post->id],
         ],201);
@@ -75,9 +75,9 @@ class PostController extends Controller implements HasMiddleware
             $file = basename($image->path);
             Storage::disk('local')->delete('images/'.$file);
         }
-        
+
         // delete post
         $post->delete();
-        return ['message'=>'The post was deleted'];
+        return ['message'=>'Пост был удален !'];
     }
 }

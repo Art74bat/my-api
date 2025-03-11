@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CorporatePriceRequest;
+use App\Http\Requests\PriceRequest;
 use App\Http\Requests\SettingLinePriceRequest;
 use App\Http\Resources\Price\PriceResource;
 use App\Models\SettingLinePrice;
@@ -24,7 +24,7 @@ class SettingLinePriceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CorporatePriceRequest $request)
+    public function store(PriceRequest $request)
     {
         $data = SettingLinePrice::create([
             'title'=>$request->str('title'),
@@ -38,7 +38,7 @@ class SettingLinePriceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CorporatePriceRequest $request, SettingLinePrice $line)
+    public function update(PriceRequest $request, SettingLinePrice $line)
     {
         if ($request->method() === 'PUT') {
             $line -> update([

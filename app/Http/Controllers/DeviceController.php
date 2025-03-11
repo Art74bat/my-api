@@ -10,7 +10,7 @@ class DeviceController extends Controller
     public function index ()
     {
         $devices = Device::query()->get();
-        
+
         return $devices->map(fn($item)=>[
             'id'=>$item->id,
             'name'=>$item->name,
@@ -31,7 +31,7 @@ class DeviceController extends Controller
         $device = Device::create($fields);
 
         return response()->json([
-            'message'=>'The device was added',
+            'message'=>'Устройство добавлено !',
             "id"=>$device->id
         ]);
     }
