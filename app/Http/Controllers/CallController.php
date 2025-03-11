@@ -25,7 +25,7 @@ class CallController extends Controller
             'email'=>'email',
             "message"=>'max:225',
             'phone'=>'string',
-            'call'=>'boolean'
+            'calls'=>'boolean'
         ]);
         $call = Call::create($fields);
         return response()->json([

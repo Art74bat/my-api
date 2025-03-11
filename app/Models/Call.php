@@ -11,6 +11,6 @@ class Call extends Model
         'email',
         'message',
         'phone',
-        "consult"
+        "calls"
     ];
 }
