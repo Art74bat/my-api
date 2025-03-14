@@ -26,7 +26,8 @@ use App\Http\Controllers\PostController;
 // Posts
 Route::apiResource('posts',PostController::class);
 
-// User
+// User----------------------------------------------
+
 Route::controller(AuthController::class)->group(function (){
     Route::get('/users',[AuthController::class,'index'])->middleware('auth:sanctum');
     Route::post('/register',[AuthController::class,'register']);
@@ -36,7 +37,10 @@ Route::controller(AuthController::class)->group(function (){
     Route::put('/update/{user}',[AuthController::class,'update'])->middleware('auth:sanctum');
     Route::delete('/destroy/{user}',[AuthController::class,'destroy'])->middleware('auth:sanctum');
 });
-// Calls
+
+
+// Calls-----------------------------------------------------
+
 Route::controller(CallController::class)->group(function (){
     Route::get('/calls',[CallController::class,'index']);
     // Route::get('/calls/{call}',[CallController::class,'show']);
@@ -44,7 +48,10 @@ Route::controller(CallController::class)->group(function (){
     Route::delete('/calls/{call}',[CallController::class,'destroy'])->middleware('auth:sanctum');
 });
 
-// Reviews
+
+// Reviews=================================================
+
+
 Route::controller(ReviewController::class)->group(function (){
     Route::get('/reviews',[ReviewController::class,'index']);
     // Route::get('/reviews/{review}',[ReviewController::class,'show']);
@@ -53,7 +60,9 @@ Route::controller(ReviewController::class)->group(function (){
 });
 
 
-// Device
+// Device=========================================================
+
+
 Route::controller(DeviceController::class)->group(function (){
     Route::get('/devices',[DeviceController::class,'index']);
     // Route::get('/devices/{device}',[DeviceController::class,'show']);
@@ -62,7 +71,7 @@ Route::controller(DeviceController::class)->group(function (){
 });
 
 
-// Manufacturers
+// Manufacturers=======================================================
 Route::controller(ManufacturerController::class)->group(function (){
     Route::get('/manufacturers',[ManufacturerController::class,'index']);
     // Route::get('/manufacturers/{manufacturer}',[ManufacturerController::class,'show']);
@@ -70,7 +79,11 @@ Route::controller(ManufacturerController::class)->group(function (){
     Route::delete('/manufacturers/{manufacturer}',[ManufacturerController::class,'destroy'])->middleware('auth:sanctum');
 });
 
-// image
+
+
+// image------------------------------for Post-------------------------------------
+
+
 Route::controller(PostImageController::class)->group(function (){
     Route::get('/images',[PostImageController::class,'index']);
     Route::post('/images/{image}',[PostImageController::class,'update']);
@@ -106,35 +119,6 @@ Route::controller(SoftWarePriceController::class)->group(function (){
     Route::put('/softs/{soft}',[SoftWarePriceController::class,'update'])->middleware('auth:sanctum');
     Route::patch('/softs/{soft}',[SoftWarePriceController::class,'update'])->middleware('auth:sanctum');
     Route::delete('/softs/{soft}',[SoftWarePriceController::class,'destroy'])->middleware('auth:sanctum');
-});
-
-// SettingLinePrice
-Route::controller(SettingLinePriceController::class)->group(function (){
-    Route::get('/settings',[SettingLinePriceController::class,'index']);
-    Route::post('/settings',[SettingLinePriceController::class,'store'])->middleware('auth:sanctum');
-    Route::put('/settings/{line}',[SettingLinePriceController::class,'update'])->middleware('auth:sanctum');
-    Route::patch('/settings/{line}',[SettingLinePriceController::class,'update'])->middleware('auth:sanctum');
-    Route::delete('/settings/{line}',[SettingLinePriceController::class,'destroy'])->middleware('auth:sanctum');
-});
-
-
-// RecoveryPrice
-Route::controller(RecoveryPriceController::class)->group(function (){
-    Route::get('/recoverys',[RecoveryPriceController::class,'index']);
-    Route::post('/recoverys',[RecoveryPriceController::class,'store'])->middleware('auth:sanctum');
-    Route::put('/recoverys/{recovery}',[RecoveryPriceController::class,'update'])->middleware('auth:sanctum');
-    Route::patch('/recoverys/{recovery}',[RecoveryPriceController::class,'update'])->middleware('auth:sanctum');
-    Route::delete('/recoverys/{recovery}',[RecoveryPriceController::class,'destroy'])->middleware('auth:sanctum');
-});
-
-
-// SubscriptionPrice
-Route::controller(SubscriptionPriceController::class)->group(function (){
-    Route::get('/subscript',[SubscriptionPriceController::class,'index']);
-    Route::post('/subscript',[SubscriptionPriceController::class,'store'])->middleware('auth:sanctum');
-    Route::put('/subscript/{item}',[SubscriptionPriceController::class,'update'])->middleware('auth:sanctum');
-    Route::patch('/subscript/{item}',[SubscriptionPriceController::class,'update'])->middleware('auth:sanctum');
-    Route::delete('/subscript/{item}',[SubscriptionPriceController::class,'destroy'])->middleware('auth:sanctum');
 });
 
 // CorporatePrice
