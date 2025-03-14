@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class SoftWarePrice extends Model
 {
     protected $fillable = [
-        "title",
+        "category",
+        "groupe",
         "description",
         "price",
     ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Price;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\HardWarePriceRequest;
+use App\Http\Resources\Price\HardPriceResource;
 use App\Models\HardWarePrice;
 use Illuminate\Http\Request;
 
@@ -13,20 +14,23 @@ class HardWarePriceController extends Controller
     public function index ()
     {
         $data = HardWarePrice::query()->get();
-        return response()->json($data);
+        return HardPriceResource::collection($data);
     }
 
     public function store (HardWarePriceRequest $request)
     {
-    
+
         $data = HardWarePrice::create([
-            'title'=>$request->str('title'),
-            'apple'=>$request->str("apple"),
+            'category'=>$request->str('title'),
+            'title'=>$request->str("apple"),
+            'sub_title'=>$request->str("apple"),
+            'groupe'=>$request->integer("apple"),
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data);
+        return response()->json($data->id);
     }
+
     public function update (HardWarePriceRequest $request, HardWarePrice $hard)
     {
 
@@ -55,7 +59,7 @@ class HardWarePriceController extends Controller
             $hard->update($data);
         }
 
-        
+
         return response()->json([
             'id'=>$hard->id,
         ]);

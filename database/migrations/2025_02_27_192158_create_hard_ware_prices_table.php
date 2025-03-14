@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('hard_ware_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('apple')->nullable();
-            $table->string('apple_model')->nullable();
+            $table->string('category');
+            $table->string('title')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->integer('groupe')->nullable();
             $table->text('description');
             $table->float('price');
             $table->timestamps();

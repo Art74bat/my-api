@@ -17,13 +17,15 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
+
         // dd($request);
         $request->validate([
             'name'=>'required|string|max:225',
             'second_name'=>'required|string|max:225',
             'experience'=>'required|string|max:100',
-            'image'=>'required|image|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
+        // dd($request);
         // только одна картинка для каждой записи....
         $image = $request->file('image');
 
@@ -42,13 +44,14 @@ class TeamController extends Controller
             "id"=>$team->id
         ]);
     }
+
     public function update(Request $request, Team $team)
     {
 
         $fields = $request->validate([
-            'name'=>'required|string|max:225',
-            'second_name'=>'required|string|max:225',
-            'experience'=>'required|string|max:100',
+            'name'=>'|string|max:225',
+            'second_name'=>'|string|max:225',
+            'experience'=>'|string|max:100',
         ]);
         // dd($request);
         $team->update($fields);

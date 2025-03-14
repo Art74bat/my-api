@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class HardWarePrice extends Model
 {
     protected $fillable = [
+        'category',
         'title',
-        'apple',
+        'subtitle',
+        'groupe',
         'description',
         'price',
     ];

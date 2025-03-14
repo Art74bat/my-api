@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PriceRequest;
-use App\Http\Resources\Price\PriceResource;
+use App\Http\Resources\Price\SoftPriceResource;
 use App\Models\SoftWarePrice;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class SoftWarePriceController extends Controller
     public function index ()
     {
         $data = SoftWarePrice::query()->get();
-        return PriceResource::collection($data);
+        return SoftPriceResource::collection($data);
     }
 
     public function store (PriceRequest $request)
@@ -25,7 +25,7 @@ class SoftWarePriceController extends Controller
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return new PriceResource($data);
+        return response()->json($data->id);
     }
     public function update (PriceRequest $request, SoftWarePrice $soft)
     {
