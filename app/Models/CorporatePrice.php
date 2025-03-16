@@ -8,7 +8,7 @@ class CorporatePrice extends Model
 {
     protected $fillable = [
         "category",
-        "groupe",
+        "route",
         "description",
         "price",
     ];

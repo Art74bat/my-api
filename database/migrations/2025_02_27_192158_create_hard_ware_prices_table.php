@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-            $table->string('groupe')->nullable();
+            $table->string('route')->nullable();
             $table->text('description');
             $table->float('price');
             $table->timestamps();

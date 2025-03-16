@@ -10,7 +10,7 @@ class HardWarePrice extends Model
         'category',
         'title',
         'subtitle',
-        'groupe',
+        'route',
         'description',
         'price',
     ];

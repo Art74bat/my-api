@@ -25,7 +25,7 @@ class HardWarePriceController extends Controller
             'category'=>$request->str('category'),
             'title'=>$request->input("title"),
             'sub_title'=>$request->input("sub_title"),
-            'groupe'=>$request->str("groupe"),
+            'route'=>$request->str("route"),
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
@@ -40,7 +40,7 @@ class HardWarePriceController extends Controller
                 'category'=>$request->str('category'),
                 'title'=>$request->input('title'),
                 'sub_title'=>$request->str('sub_title'),
-                'groupe'=>$request->str('groupe'),
+                'route'=>$request->str('route'),
                 'description'=>$request->str('description'),
                 'price'=>$request->input('price'),
             ]);
@@ -55,8 +55,8 @@ class HardWarePriceController extends Controller
             if ($request->has('sub_title')) {
                 $data['sub_title'] = $request->input('sub_title');
             }
-            if ($request->has('groupe')) {
-                $data['groupe'] = $request->input('groupe');
+            if ($request->has('route')) {
+                $data['route'] = $request->input('route');
             }
             if ($request->has('description')) {
                 $data['description'] = $request->input('description');

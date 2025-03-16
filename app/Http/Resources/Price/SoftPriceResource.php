@@ -17,7 +17,7 @@ class SoftPriceResource extends JsonResource
         return [
             'id'=>$this->id,
             'category'=>$this->category,
-            'groupe'=>$this->groupe,
+            'route'=>$this->route,
             'description'=>$this->description,
             'price'=>$this->price,
         ];

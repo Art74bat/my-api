@@ -8,7 +8,7 @@ class SoftWarePrice extends Model
 {
     protected $fillable = [
         "category",
-        "groupe",
+        "route",
         "description",
         "price",
     ];

@@ -19,7 +19,7 @@ class HardPriceResource extends JsonResource
             'category'=>$this->category,
             'title'=>$this->title,
             'sub_title'=>$this->sub_title,
-            'groupe'=>$this->groupe,
+            'route'=>$this->route,
             'description'=>$this->description,
             'price'=>$this->price,
         ];

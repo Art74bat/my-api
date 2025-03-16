@@ -22,7 +22,7 @@ class SoftWarePriceController extends Controller
 
         $data = SoftWarePrice::create([
             'category'=>$request->str('category'),
-            'groupe'=>$request->str('groupe'),
+            'route'=>$request->str('route'),
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
@@ -34,7 +34,7 @@ class SoftWarePriceController extends Controller
         if ($request->method() === 'PUT') {
             $soft -> update([
                 'category'=>$request->str('category'),
-                'groupe'=>$request->str('groupe'),
+                'route'=>$request->str('route'),
                 'description'=>$request->str('description'),
                 'price'=>$request->input('price'),
             ]);
@@ -43,8 +43,8 @@ class SoftWarePriceController extends Controller
             if ($request->has('category')) {
                 $data['category'] = $request->input('category');
             }
-            if ($request->has('groupe')) {
-                $data['groupe'] = $request->input('groupe');
+            if ($request->has('route')) {
+                $data['route'] = $request->input('route');
             }
             if ($request->has('description')) {
                 $data['description'] = $request->input('description');

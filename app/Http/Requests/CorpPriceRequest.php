@@ -23,7 +23,7 @@ class CorpPriceRequest extends FormRequest
     {
         return [
             "title"=>["string","nullable"],
-            "groupe"=>["required","numeric"],
+            "route"=>["required","string"],
             "description"=>["string"],
             "price"=>["required","numeric"],
         ];

@@ -21,6 +21,7 @@ class CorporatePriceController extends Controller
         $data = CorporatePrice::create([
             'title'=>$request->str('title'),
             'description'=>$request->str('description'),
+            'route'=>$request->str('route'),
             'price'=>$request->input('price'),
         ]);
         return response()->json($data->id);
@@ -33,12 +34,16 @@ class CorporatePriceController extends Controller
             $item -> update([
                 'title'=>$request->title,
                 'description'=>$request->description,
+                'route'=>$request->route,
                 'price'=>$request->price,
             ]);
         }else{
             $data = [];
             if ($request->has('title')) {
                 $data['title'] = $request->input('title');
+            }
+            if ($request->has('route')) {
+                $data['route'] = $request->input('route');
             }
             if ($request->has('description')) {
                 $data['description'] = $request->input('description');

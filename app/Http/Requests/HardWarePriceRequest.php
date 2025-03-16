@@ -25,7 +25,7 @@ class HardWarePriceRequest extends FormRequest
             "category"=>["required","string"],
             "title"=>["string","nullable"],
             "sub_title"=>["string","nullable"],
-            "groupe"=>["required","numeric"],
+            "route"=>["required","string"],
             "description"=>["string"],
             "price"=>["required","numeric"],
         ];
