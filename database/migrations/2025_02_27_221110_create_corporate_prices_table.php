@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('corporate_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('category');
+            $table->string('groupe');
             $table->text('description');
             $table->float('price');
             $table->timestamps();

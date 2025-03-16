@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CorporatePrice extends Model
 {
     protected $fillable = [
-        "title",
+        "category",
+        "groupe",
         "description",
         "price",
     ];

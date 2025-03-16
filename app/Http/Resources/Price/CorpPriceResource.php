@@ -16,7 +16,7 @@ class CorpPriceResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'title'=>$this->title,
+            'category'=>$this->category,
             'groupe'=>$this->groupe,
             'description'=>$this->description,
             'price'=>$this->price,
