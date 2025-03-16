@@ -26,7 +26,7 @@ class CorporatePriceController extends Controller
         return response()->json($data->id);
     }
 
-    public function update (PriceRequest $request, CorporatePrice $item)
+    public function update (CorpPriceRequest $request, CorporatePrice $item)
     {
 
         if ($request->method() === 'PUT') {
