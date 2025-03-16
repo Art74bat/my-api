@@ -19,12 +19,14 @@ class CorporatePriceController extends Controller
     public function store (CorpPriceRequest $request)
     {
         $data = CorporatePrice::create([
-            'title'=>$request->str('title'),
+            'category'=>$request->str('category'),
             'description'=>$request->str('description'),
             'route'=>$request->str('route'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data->id);
+        return response()->json([
+            'message'=>'Даннуе успешно добавлены !'
+        ]);
     }
 
     public function update (CorpPriceRequest $request, CorporatePrice $item)
@@ -32,15 +34,15 @@ class CorporatePriceController extends Controller
 
         if ($request->method() === 'PUT') {
             $item -> update([
-                'title'=>$request->title,
+                'category'=>$request->category,
                 'description'=>$request->description,
                 'route'=>$request->route,
                 'price'=>$request->price,
             ]);
         }else{
             $data = [];
-            if ($request->has('title')) {
-                $data['title'] = $request->input('title');
+            if ($request->has('category')) {
+                $data['category'] = $request->input('category');
             }
             if ($request->has('route')) {
                 $data['route'] = $request->input('route');
@@ -65,6 +67,6 @@ class CorporatePriceController extends Controller
     public function destroy (CorporatePrice $item)
     {
         $item->delete();
-        return ['message'=>'The item was deleted'];
+        return ['message'=>'Данные удалены !'];
     }
 }
