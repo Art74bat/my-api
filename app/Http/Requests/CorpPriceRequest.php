@@ -22,7 +22,7 @@ class CorpPriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title"=>["string","nullable"],
+            "category"=>["string","nullable"],
             "route"=>["required","string"],
             "description"=>["string"],
             "price"=>["required","numeric"],

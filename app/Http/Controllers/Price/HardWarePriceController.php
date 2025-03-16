@@ -29,7 +29,9 @@ class HardWarePriceController extends Controller
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
-        return response()->json($data->id);
+        return response()->json(
+            ['message'=>"Данные были добавлены",]
+        );
     }
 
     public function update (HardWarePriceRequest $request, HardWarePrice $hard)

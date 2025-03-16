@@ -9,7 +9,7 @@ class HardWarePrice extends Model
     protected $fillable = [
         'category',
         'title',
-        'subtitle',
+        'sub_title',
         'route',
         'description',
         'price',
