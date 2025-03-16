@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Price;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PriceRequest;
+use App\Http\Requests\SoftWarePriceRequest;
 use App\Http\Resources\Price\SoftPriceResource;
 use App\Models\SoftWarePrice;
 use Illuminate\Http\Request;
@@ -16,30 +16,35 @@ class SoftWarePriceController extends Controller
         return SoftPriceResource::collection($data);
     }
 
-    public function store (PriceRequest $request)
+    public function store (SoftWarePriceRequest $request)
     {
-
+        // dd($request);
 
         $data = SoftWarePrice::create([
-            'title'=>$request->str('title'),
+            'category'=>$request->str('category'),
+            'groupe'=>$request->str('groupe'),
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
         return response()->json($data->id);
     }
-    public function update (PriceRequest $request, SoftWarePrice $soft)
+    public function update (SoftWarePriceRequest $request, SoftWarePrice $soft)
     {
-
+        // dd($request);
         if ($request->method() === 'PUT') {
             $soft -> update([
-                'title'=>$request->str('title'),
+                'category'=>$request->str('category'),
+                'groupe'=>$request->str('groupe'),
                 'description'=>$request->str('description'),
                 'price'=>$request->input('price'),
             ]);
         }else{
             $data = [];
-            if ($request->has('title')) {
-                $data['title'] = $request->input('title');
+            if ($request->has('category')) {
+                $data['category'] = $request->input('category');
+            }
+            if ($request->has('groupe')) {
+                $data['groupe'] = $request->input('groupe');
             }
             if ($request->has('description')) {
                 $data['description'] = $request->input('description');

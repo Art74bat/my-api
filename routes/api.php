@@ -72,6 +72,8 @@ Route::controller(DeviceController::class)->group(function (){
 
 
 // Manufacturers=======================================================
+
+
 Route::controller(ManufacturerController::class)->group(function (){
     Route::get('/manufacturers',[ManufacturerController::class,'index']);
     // Route::get('/manufacturers/{manufacturer}',[ManufacturerController::class,'show']);

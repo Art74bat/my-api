@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PriceRequest extends FormRequest
+class CorpPriceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,10 @@ class PriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title"=>["nullable","string"],
-            "description"=>["nullable","string"],
-            "price"=>["nullable","numeric"],
+            "title"=>["string","nullable"],
+            "groupe"=>["required","numeric"],
+            "description"=>["string"],
+            "price"=>["required","numeric"],
         ];
     }
 }

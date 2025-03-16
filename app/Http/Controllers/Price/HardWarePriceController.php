@@ -19,12 +19,13 @@ class HardWarePriceController extends Controller
 
     public function store (HardWarePriceRequest $request)
     {
+        // dd($request);
 
         $data = HardWarePrice::create([
-            'category'=>$request->str('title'),
-            'title'=>$request->str("apple"),
-            'sub_title'=>$request->str("apple"),
-            'groupe'=>$request->integer("apple"),
+            'category'=>$request->str('category'),
+            'title'=>$request->input("title"),
+            'sub_title'=>$request->input("sub_title"),
+            'groupe'=>$request->str("groupe"),
             'description'=>$request->str('description'),
             'price'=>$request->input('price'),
         ]);
@@ -33,21 +34,29 @@ class HardWarePriceController extends Controller
 
     public function update (HardWarePriceRequest $request, HardWarePrice $hard)
     {
-
+        // dd($request);
         if ($request->method() === 'PUT') {
             $hard -> update([
-                'title'=>$request->str('title'),
-                'apple'=>$request->str('apple'),
+                'category'=>$request->str('category'),
+                'title'=>$request->input('title'),
+                'sub_title'=>$request->str('sub_title'),
+                'groupe'=>$request->str('groupe'),
                 'description'=>$request->str('description'),
                 'price'=>$request->input('price'),
             ]);
         }else{
             $data = [];
+            if ($request->has('category')) {
+                $data['category'] = $request->input('category');
+            }
             if ($request->has('title')) {
                 $data['title'] = $request->input('title');
             }
-            if ($request->has('apple')) {
-                $data['apple'] = $request->input('apple');
+            if ($request->has('sub_title')) {
+                $data['sub_title'] = $request->input('sub_title');
+            }
+            if ($request->has('groupe')) {
+                $data['groupe'] = $request->input('groupe');
             }
             if ($request->has('description')) {
                 $data['description'] = $request->input('description');
@@ -69,6 +78,6 @@ class HardWarePriceController extends Controller
     public function destroy (HardWarePrice $hard)
     {
         $hard->delete();
-        return ['message'=>'The item was deleted'];
+        return ['message'=>'Данные были удалены !'];
     }
 }

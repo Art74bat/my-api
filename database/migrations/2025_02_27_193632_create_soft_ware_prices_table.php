@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('soft_ware_prices', function (Blueprint $table) {
             $table->id();
             $table->string('category');
-            $table->integer('groupe');
+            $table->string('groupe');
             $table->text('description');
             $table->float('price');
             $table->timestamps();
