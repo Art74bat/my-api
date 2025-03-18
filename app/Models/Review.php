@@ -8,6 +8,7 @@ class Review extends Model
 {
     protected $fillable = [
         'name',
+        'second_name',
         'email',
         'review',
     ];

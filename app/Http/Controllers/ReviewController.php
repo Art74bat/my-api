@@ -17,13 +17,14 @@ class ReviewController extends Controller
 
     public function show (Review $review)
     {
-        return $review;
+        return new ReviewseResource($review);
     }
     public function store (Request $request)
     {
         // dd($request);
         $fields = $request->validate([
             'name'=>'required|max:225',
+            // 'second_name'=>'required|max:225',
             'email'=>'required|email',
             "review"=>'max:225',
         ]);

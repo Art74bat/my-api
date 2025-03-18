@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->string('name',100);
+            $table->string('second_name',100)->nullable();
             $table->string('email',100);
             $table->text('review');
             // $table->boolean('policy');

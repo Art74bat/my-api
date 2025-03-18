@@ -17,8 +17,10 @@ class ReviewseResource extends JsonResource
         return [
             "id"=>$this->id,
             'name'=>$this->name,
+            'second_name'=>$this->second_name,
             'email'=>$this->email,
             'review'=>$this->review,
+            'created_at'=>$this->created_at,
         ];
     }
 }
