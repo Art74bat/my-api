@@ -27,6 +27,7 @@ class Post extends Model
 
     public function imagesList ()
     {
+        // pluck?
         return $this->images->map(fn(PostImage $item) => $item->path);
     }
 

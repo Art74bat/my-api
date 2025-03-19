@@ -45,7 +45,7 @@ class PostService
         $this->post->update([
             'title'=>$request->input('title'),
         ]);
-        $this->post->body()->update([
+        $this->post->bodies()->update([
             "sub_title"=>$request->input('sub_title'),
             "body"=>$request->input('body'),
         ]);

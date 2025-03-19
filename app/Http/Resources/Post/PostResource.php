@@ -21,7 +21,7 @@ class PostResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->title,
-            'body'=>PostBodyResource::collection($this->body),
+            'body'=>PostBodyResource::collection($this->bodies),
             'images'=>$this->imagesList(),
         ];
     }

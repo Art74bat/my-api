@@ -36,7 +36,7 @@ class PostController extends Controller implements HasMiddleware
      */
     public function store(PostStoreRequest $request, PostService $service)
     {
-        // логика в сервисе()
+        // логика в сервисе
         $post = $service->store($request);
 
         return response()->json([
