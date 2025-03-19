@@ -22,7 +22,7 @@ class PostService
             'title'=>$request->str('title'),
         ]);
 
-        $post->body()->create([
+        $post->bodies()->create([
             'sub_title'=>$request->str('sub_title'),
             'body'=>$request->str('body'),
         ]);
@@ -54,6 +54,7 @@ class PostService
         return $this->post;
     }
 
+    // сеттер для private Post $post
     public function setPost(Post $post)
     {
         $this->post = $post;

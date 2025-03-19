@@ -19,7 +19,7 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function images()
     {
         return $this->hasMany(PostImage::class);
@@ -31,7 +31,7 @@ class Post extends Model
     }
 
 
-    public function body()
+    public function bodies()
     {
         return $this->hasMany(PostBody::class);
     }

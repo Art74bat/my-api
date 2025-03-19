@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('post_bodies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->string('sub_title')->nullable();
             $table->text('body')->nullable();
             $table->timestamps();

@@ -26,6 +26,15 @@ use App\Http\Controllers\PostController;
 // Posts
 Route::apiResource('posts',PostController::class);
 
+
+// image------------------------------for Post-------------------------------------
+
+
+Route::controller(PostImageController::class)->group(function (){
+    Route::get('/images',[PostImageController::class,'index']);
+    Route::post('/images/{image}',[PostImageController::class,'update']);
+});
+
 // User----------------------------------------------
 
 Route::controller(AuthController::class)->group(function (){
@@ -83,13 +92,7 @@ Route::controller(ManufacturerController::class)->group(function (){
 
 
 
-// image------------------------------for Post-------------------------------------
 
-
-Route::controller(PostImageController::class)->group(function (){
-    Route::get('/images',[PostImageController::class,'index']);
-    Route::post('/images/{image}',[PostImageController::class,'update']);
-});
 
 // PostBody
 // Route::controller(PostBodyController::class)->group(function (){
