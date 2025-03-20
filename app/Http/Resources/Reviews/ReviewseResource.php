@@ -20,7 +20,7 @@ class ReviewseResource extends JsonResource
             'second_name'=>$this->second_name,
             'email'=>$this->email,
             'review'=>$this->review,
-            'created_at'=>$this->created_at,
+            'created_at'=>$this->created_at->format('d.m.Y'),
         ];
     }
 }

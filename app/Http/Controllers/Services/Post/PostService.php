@@ -10,52 +10,77 @@ use Illuminate\Support\Facades\Storage;
 class PostService
 {
     private Post $post;
-    public function published ()
+
+    public function published()
     {
         return Post::query()->get();
     }
 
-    public function store (PostStoreRequest $request):Post
+    /**
+     * Store a newly created post in storage.
+     *
+     * @param PostStoreRequest $request
+     * @return Post
+     */
+    public function store(PostStoreRequest $request): Post
     {
-         // dd($request);
-         $post = $request->user()->posts()->create([
-            'title'=>$request->str('title'),
+        $post = $request->user()->posts()->create([
+            'title' => $request->input('title'),
         ]);
 
         $post->bodies()->create([
-            'sub_title'=>$request->str('sub_title'),
-            'body'=>$request->str('body'),
+            'sub_title' => $request->input('sub_title'),
+            'body' => $request->input('body'),
         ]);
 
-        foreach ($request->file('images') as $item) {
-            $path = $item->storePublicly('images');
-            // dd($path);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->storePublicly('images/post','public');
 
             $post->images()->create([
-                'path'=>config('app.url'). Storage::url($path)
+                'path' => config('app.url') . Storage::url($path),
             ]);
         }
 
         return $post;
     }
 
-    public function update (PostUpdateRequest $request)
+    /**
+     * Update the specified post in storage.
+     *
+     * @param PostUpdateRequest $request
+     * @return Post
+     * @throws \Exception
+     */
+    public function update(PostUpdateRequest $request): Post
     {
+        if (!$this->post) {
+            throw new \Exception('Post not set');
+        }
 
         $this->post->update([
-            'title'=>$request->input('title'),
-        ]);
-        $this->post->bodies()->update([
-            "sub_title"=>$request->input('sub_title'),
-            "body"=>$request->input('body'),
+            'title' => $request->input('title'),
         ]);
 
+        $this->post->bodies()->updateOrCreate(
+            ['post_id' => $this->post->id],
+            [
+                'sub_title' => $request->input('sub_title'),
+                'body' => $request->input('body'),
+            ]
+        );
 
         return $this->post;
     }
 
-    // сеттер для private Post $post
-    public function setPost(Post $post)
+    /**
+     * Set the post to be updated.
+     *
+     * @param Post $post
+     * @return $this
+     */
+
+    public function setPost(Post $post): self
     {
         $this->post = $post;
         return $this;

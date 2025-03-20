@@ -25,7 +25,7 @@ class PostStoreRequest extends FormRequest
             'title'=>['required','string','max:225'],
             'body'=>['required','string'],
             'sub_title'=>['string'],
-            'images.*'=>['image'],
+            'image.*'=>['image'],
         ];
     }
 }

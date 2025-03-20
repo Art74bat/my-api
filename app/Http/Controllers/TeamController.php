@@ -27,7 +27,7 @@ class TeamController extends Controller
 
         try {
             $file = $request->file('image');
-            $path = $file->storePublicly('public/images/team');
+            $path = $file->storePublicly('images/team','public');
             // // Генерация URL для доступа к файлу
             // $url = Storage::url($path);
             $team = Team::create([

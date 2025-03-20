@@ -23,6 +23,7 @@ class PostResource extends JsonResource
             'title'=>$this->title,
             'body'=>PostBodyResource::collection($this->bodies),
             'images'=>$this->imagesList(),
+            'date'=>$this->created_at->format('d.m.Y'),
         ];
     }
 }

@@ -11,9 +11,11 @@ use App\Models\Post;
 
 
 // use Illuminate\Http\Request;
+use App\Models\PostBody;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 // use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller implements HasMiddleware
@@ -41,6 +43,21 @@ class PostController extends Controller implements HasMiddleware
 
         return response()->json([
             ['id'=>$post->id],
+        ],201);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function storePartPost(PostStoreRequest $request,$id)
+    {
+        $body = PostBody::create([
+            'post_id' => $id,
+            'sub_title' => $request->input('sub_title'),
+            'body' => $request->input('body'),
+        ]);
+        return response()->json([
+            ['id'=>$body->id],
         ],201);
     }
 

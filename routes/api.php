@@ -35,6 +35,14 @@ Route::controller(PostImageController::class)->group(function (){
     Route::post('/images/{image}',[PostImageController::class,'update']);
 });
 
+// PostBody
+Route::controller(PostBodyController::class)->group(function (){
+    // Route::get('/images',[PostBodyController::class,'index']);
+    Route::post('/bodies',[PostBodyController::class,'create']);
+    Route::put('/bodies/{body}',[PostBodyController::class,'update']);
+});
+
+
 // User----------------------------------------------
 
 Route::controller(AuthController::class)->group(function (){
