@@ -49,17 +49,17 @@ class PostController extends Controller implements HasMiddleware
     /**
      * Store a newly created resource in storage.
      */
-    public function storePartPost(PostStoreRequest $request,$id)
-    {
-        $body = PostBody::create([
-            'post_id' => $id,
-            'sub_title' => $request->input('sub_title'),
-            'body' => $request->input('body'),
-        ]);
-        return response()->json([
-            ['id'=>$body->id],
-        ],201);
-    }
+    // public function storePartPost(PostStoreRequest $request,$id)
+    // {
+    //     $body = PostBody::create([
+    //         'post_id' => $id,
+    //         'sub_title' => $request->input('sub_title'),
+    //         'body' => $request->input('body'),
+    //     ]);
+    //     return response()->json([
+    //         ['id'=>$body->id],
+    //     ],201);
+    // }
 
     /**
      * Display the specified resource.

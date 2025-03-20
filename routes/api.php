@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CallController;
+use App\Http\Controllers\Post\PartPostController;
+// use App\Http\Controllers\Post\PostBodyController;
 use App\Http\Controllers\Price\CorporatePriceController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\Price\HardWarePriceController;
@@ -14,7 +16,7 @@ use App\Http\Controllers\Price\SettingLinePriceController;
 use App\Http\Controllers\Price\SoftWarePriceController;
 use App\Http\Controllers\Price\SubscriptionPriceController;
 use App\Http\Controllers\TeamController;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -36,11 +38,10 @@ Route::controller(PostImageController::class)->group(function (){
 });
 
 // PostBody
-Route::controller(PostBodyController::class)->group(function (){
-    // Route::get('/images',[PostBodyController::class,'index']);
-    Route::post('/bodies',[PostBodyController::class,'create']);
-    Route::put('/bodies/{body}',[PostBodyController::class,'update']);
-});
+
+Route::post('/bodies/{id}',PartPostController::class)->middleware('auth:sanctum');
+
+
 
 
 // User----------------------------------------------

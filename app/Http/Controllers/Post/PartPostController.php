@@ -3,24 +3,23 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\Post\PartBodyRequest;
 use App\Models\PostBody;
+// use Illuminate\Http\Request;
 
-class PostBodyController extends Controller
+class PartPostController extends Controller
 {
-      /**
-     * создать дополнительный раздел Post
-     *
-     * @param  int  $id
-     * @return Response
+    /**
+     * Handle the incoming request.
      */
-    public function __invoke(PostStoreRequest $request,$id)
+    public function __invoke(PartBodyRequest $request,$id)
     {
         $body = PostBody::create([
             'post_id' => $id,
             'sub_title' => $request->input('sub_title'),
             'body' => $request->input('body'),
         ]);
+
         return response()->json([
             ['id'=>$body->id],
         ],201);
